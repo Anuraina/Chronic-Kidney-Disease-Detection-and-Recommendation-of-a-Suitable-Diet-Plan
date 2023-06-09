@@ -1,0 +1,215 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="/Chronic-Kidney-Disease-Prediction/styles/kidney.css">
+<div class="row"  style="margin-bottom: 125px; background-repeat:repeat-x; background-image: url(../static/kidney.png);">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <!-- <center><h1>Kidney Disease Predictor</h1> -->
+        </center>
+        <div class="card card-body" style="border: 1px solid white; background-color: rgba(0,0,0,0.5); border-radius: 5px; box-shadow: 0 0 10px #000;">
+            <form  class="form-horizontal" action="{{ url_for('predictPage') }}" method="POST">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" min="1" max="100" name="age" required placeholder="age">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number"  name="bp" required placeholder="blood pressure">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number"  name="al" required placeholder="albumin">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="su" required placeholder="sugar">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="rbc" required placeholder="red blood cells">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="pc" required placeholder="pus cell">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="pcc" required placeholder="pus cell clumps">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="ba" required placeholder="bacteria">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="bgr" required placeholder="blood glucose random">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="bu" required placeholder="blood urea">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="sc" required placeholder="serum creatinine">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="pot" required placeholder="potassium">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="wc" required placeholder="white blood pressure">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="htn" required placeholder="hypertension">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="dm" required placeholder="diabetes mellitus">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="cad" required placeholder="coronary artery">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="pe" required placeholder="pedal edema">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input style="border: 1px solid black;" class="form-control" type="number" name="ane" required placeholder="anemia">
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-info btn-block" style="background-color:rgb(75, 15, 15)" value="Predict">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div> <br>
+<h1 style="text-align: center"> Sample-Inputs in the Data Set</h1> <br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">age</th>
+      <th scope="col">bp</th>
+      <th scope="col">al</th>
+      <th scope="col">su</th>
+      <th scope="col">rbc</th>
+      <th scope="col">pc</th>
+      <th scope="col">pcc</th>
+      <th scope="col">ba</th>
+      <th scope="col">bgr</th>
+      <th scope="col">bu</th>
+      <th scope="col">sc</th>
+      <th scope="col">pot</th>
+      <th scope="col">wc</th>
+      <th scope="col">htn</th>
+      <th scope="col">dm</th>
+      <th scope="col">cad</th>
+      <th scope="col">pe</th>
+      <th scope="col">ane</th>
+      <th scope="col">Disease</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td>24</td>
+      <td>100</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>136</td>
+      <td>60</td>
+      <td>2</td>
+      <td>3</td>
+      <td>9600</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>80</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>157</td>
+      <td>162</td>
+      <td>9</td>
+      <td>4</td>
+      <td>11000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Present</td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>121</td>
+      <td>27</td>
+      <td>1</td>
+      <td>3</td>
+      <td>8300</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Healthy</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %}
